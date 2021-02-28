@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="blockTimer">
+            <svg style="position: absolute;" width="320" height="320">
+                <circle cx="160" cy="160" r="150" stroke="white" opacity=".3" stroke-width="2" fill="transparent" />
+                <circle id="progress" cx="160" cy="160" r="150" stroke="white" stroke-width="2" fill="transparent" />
+            </svg>
+            <p class="min">00</p>
+            <p>:</p>
+            <p class="sec">00</p>
+        </div>
+        <div class="blockBtn">
+            <button id="play" class="btn" onclick="play()">Play</button>
+            <button id="pause" class="btn" style="display: none;" onclick="pause()">Pause</button>
+            <button id="continue" class="btn" style="display: none;" onclick="cont()">Сontinue</button>
+            <button id="stop" class="btn" style="display: none;" onclick="stop()">Stop</button>
+        </div>
+    </div>
+    <script src="pomodoro.js"></script>
+</body>
+
+</html>
