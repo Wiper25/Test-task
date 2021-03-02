@@ -5,6 +5,9 @@
     color: white;
     margin-top:50px;
 }
+svg {
+
+}
 .blockBtn {
     display: flex;
     justify-content: center;
@@ -19,4 +22,9 @@
     color: white;
     border-radius: 50px;
     font-size: 30px;
+}
+.progress {
+    stroke-dashoffset: 942;
+    stroke-dasharray: 942;
+    transition: 1000ms stroke-dashoffset;
 }
