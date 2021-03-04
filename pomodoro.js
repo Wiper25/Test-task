@@ -15,12 +15,29 @@ let radius = 150;
 //Цвет фона по умолчанию
 document.querySelector('body').style.backgroundImage = BACKGROUNDS.pomodoro
 
+document.getElementById('setting').addEventListener('click', () => {
+  document.querySelector('.modelWin').style.top = 0 + 'px'
+})
+document.getElementById('close').addEventListener('click', () => {
+  document.querySelector('.modelWin').style.top = -1000 + 'px'
+})
+document.getElementById('done').addEventListener('click', () => {
+  document.querySelector('.modelWin').style.top = -1000 + 'px'
+  inputPomodoro = document.getElementById("inputPomodoro").value
+  inputShort = document.getElementById("inputShort").value
+  inputLong = document.getElementById("inputLong").value
+  inputNumPomodoro = document.getElementById("inputNumPomodoro").value
+  console.log(inputPomodoro)
+  console.log(inputShort)
+  console.log(inputLong)
+  console.log(inputNumPomodoro)
+})
 
 /**
  * State
  */
 const state = {
-  pomodoro: 2, //длина таймера
+  pomodoro: 5, //длина таймера
   round: 0, // количество помидоров
   breakShort: 1, // короткий перерыв
   breakLong: 3, // длинный перерыв
@@ -31,24 +48,95 @@ const state = {
   timerValue: 0, //текущее значение таймера (сек)
 };
 
+
 //подтверждаем изменение данных формы
 const handleSubmit = (event) => {
 
 };
+let iPomodoro = 0
+iBreakMin = 0
+iBreakMax = 0
+
 //Запускает таймер
 const play = () => {
-  let min = 0
+  document.querySelector('body').style.backgroundImage = BACKGROUNDS.pomodoro
   document.getElementById("play").style.display = 'none'
   document.getElementById("pause").style.display = 'block'
-  pauseInterval = setInterval(() => {
-    ++state.timerValue
-    state.timerValue < 10 ? document.querySelector('.sec').innerHTML = '0' + state.timerValue : document.querySelector('.sec').innerHTML = state.timerValue
-    if (state.timerValue == 59) {
-      state.timerValue = 0
-      ++min
-      min < 10 ? document.querySelector('.min').innerHTML = '0' + min : document.querySelector('.min').innerHTML = min
+  pauseTimerInterval = setInterval(() => {
+    if (state.pomodoro == 0 && state.timerValue == 0) {
+      if (iPomodoro == 3) {
+        clearInterval(pauseTimerInterval);
+        console.log("iPomodoro" + "End")
+      } else {
+        iPomodoro++
+        console.log("iPomodoro" + " " + iPomodoro)
+        document.querySelector('body').style.backgroundImage = BACKGROUNDS.break
+        state.pomodoro = 10
+        breakMin()
+        clearInterval(pauseTimerInterval);
+      }
     }
-    console.log(state.timerValue)
+    state.pomodoro < 10 ? document.querySelector(".min").innerHTML = '0' + state.pomodoro : document.querySelector(".min").innerHTML = state.pomodoro
+    state.timerValue < 10 ? document.querySelector(".sec").innerHTML = '0' + state.timerValue : document.querySelector(".sec").innerHTML = state.timerValue
+    if (state.timerValue == 0) {
+      state.pomodoro--
+      state.timerValue = 59
+    }
+    state.timerValue--
+  }, 10)
+};
+
+//Запускает таймер короткой паузы
+const breakMin = () => {
+  document.getElementById("play").style.display = 'none'
+  document.getElementById("pause").style.display = 'block'
+  pauseBreackMinInterval = setInterval(() => {
+    if (state.pomodoro == 0 && state.timerValue == 0) {
+      if (iBreakMin > 3) {
+        breakMax()
+        clearInterval(pauseBreackMinInterval);
+        console.log("breakMin" + "End")
+      } else {
+          iBreakMin++
+        console.log("iBreakMin" + " " + iBreakMin)
+        state.pomodoro = 10
+        play()
+        clearInterval(pauseBreackMinInterval);
+      }
+    }
+    state.pomodoro < 10 ? document.querySelector(".min").innerHTML = '0' + state.pomodoro : document.querySelector(".min").innerHTML = state.pomodoro
+    state.timerValue < 10 ? document.querySelector(".sec").innerHTML = '0' + state.timerValue : document.querySelector(".sec").innerHTML = state.timerValue
+    if (state.timerValue == 0) {
+      state.pomodoro--
+      state.timerValue = 59
+    }
+    state.timerValue--
+  }, 10)
+};
+
+//Запускает таймер длинной паузы
+const breakMax = () => {
+  document.querySelector('body').style.backgroundImage = BACKGROUNDS.break
+  document.getElementById("play").style.display = 'none'
+  document.getElementById("pause").style.display = 'block'
+  pauseBreackMaxInterval = setInterval(() => {
+    if (state.pomodoro == 0 && state.timerValue == 0) {
+      if (iBreakMax == 4) {
+        console.log("breakMax End")
+      } else {
+        iBreakMax++
+        console.log("iBreakMax" + " " + iBreakMax)
+        document.querySelector('body').style.backgroundImage = BACKGROUNDS.break
+        clearInterval(pauseInterval);
+      }
+    }
+    state.pomodoro < 10 ? document.querySelector(".min").innerHTML = '0' + state.pomodoro : document.querySelector(".min").innerHTML = state.pomodoro
+    state.timerValue < 10 ? document.querySelector(".sec").innerHTML = '0' + state.timerValue : document.querySelector(".sec").innerHTML = state.timerValue
+    if (state.timerValue == 0) {
+      state.pomodoro--
+      state.timerValue = 59
+    }
+    state.timerValue--
   }, 10)
 };
 
@@ -60,6 +148,7 @@ const pause = () => {
   document.getElementById("stop").style.display = 'block'
   clearInterval(pauseInterval);
 };
+
 //останавливает таймер
 const stop = () => {
   document.getElementById("play").style.display = 'block'
@@ -67,6 +156,7 @@ const stop = () => {
   document.getElementById("continue").style.display = 'none'
   document.getElementById("stop").style.display = 'none'
 };
+
 //Продолжить 
 const cont = () => {
   document.getElementById("play").style.display = 'none'
@@ -77,5 +167,5 @@ const cont = () => {
 };
 //меняет значение и статус таймера
 tick = () => {
-  // code
+
 };

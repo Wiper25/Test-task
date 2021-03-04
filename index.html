@@ -10,6 +10,29 @@
 
 <body>
     <div class="wrapper">
+        <div style="display: flex;justify-content: flex-end;">
+            <div class="setting" id="setting">
+                <img class="cogwheel" style="position: relative;" src="/img/Group.svg" alt="">
+                <img style="position: absolute;right: 18px;top: 17.5px;" src="/img/Vector.svg" alt="">
+            </div>
+        </div>
+        <div class="modelWin">
+            <div id="close" style="display: flex;justify-content: flex-end;font-size: 20px;margin: 10px;color: white;cursor: pointer;">✖
+            </div>
+            <div>
+                <p>Pomodoro Block</p>
+                <input class="inputPomodoro" id="inputPomodoro" style="width: 170px;" type="number" min="1" max="10" name="" id="">
+                <p>Short Break</p>
+                <input class="inputShort" id="inputShort" style="width: 170px;" type="number" min="1" max="10" name="" id="">
+                <p>Long Break</p>
+                <input class="inputLong" id="inputLong" style="width: 170px;" type="number" min="1" max="10" name="" id="">
+                <p>Number of pomodoro</p>
+                <input class="inputNumPomodoro" id="inputNumPomodoro" style="width: 170px;" type="number" min="1" max="10" name="" id="">
+            </div>
+            <div>
+                <button id="done" class="done">Done</button>
+            </div>
+        </div>
         <div class="blockTimer">
             <svg style="transform: rotate(-90deg);position: absolute;" width="320" height="320">
                 <circle cx="160" cy="160" r="150" stroke="white" opacity=".3" stroke-width="2" fill="transparent" />

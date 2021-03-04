@@ -1,3 +1,6 @@
+body {
+    height: 628px;
+}
 .blockTimer  {
     display: flex;
     justify-content: center;
@@ -27,4 +30,39 @@ svg {
     stroke-dashoffset: 942;
     stroke-dasharray: 942;
     transition: 1000ms stroke-dashoffset;
+}
+.modelWin {
+    background: linear-gradient(-90deg, #F78CA0 0%, #F9748F 20.31%, #FD868C 66.67%, #FE9A8B 100%);
+    width: 200px;
+    height: 640px;
+    position: absolute;
+    right: 0px;
+    top: -1000px;
+    background-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.514);
+    transition: .3s all;
+}
+.modelWin p {
+    color: white;
+    margin: 20px 20px 0px 20px ;
+}
+input {
+    margin: 10px 0px 0px 10px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    outline: none;
+}
+.done {
+    position: relative;
+    left: 52px;
+    top: 50px;
+    width: 100px;
+    height: 50px;
+    background-color: rgb(0 0 0 / 0%);
+    outline: none;
+    border: 1px solid rgb(255 255 255);
+    color: rgb(255 255 255);
+    border-radius: 50px;
+    font-size: 15px;
 }
